@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
 import { Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
+import LandingPage from "./pages/LandingPage";
 // import tw from "tailwind-styled-components";
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} ></Route>
+      <Route path="/" element={<LandingPage />} ></Route>
     </Routes>
   );
 }

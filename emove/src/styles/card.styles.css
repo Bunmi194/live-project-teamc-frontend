@@ -1,0 +1,19 @@
+  .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 48px;
+    gap: 40px;
+
+    position: absolute;
+    width: 479px;
+    height: 424px;
+    left: 481px;
+    top: 160px;
+
+    /* White */
+
+    background: #ffffff;
+    border-radius: 24px;
+  }

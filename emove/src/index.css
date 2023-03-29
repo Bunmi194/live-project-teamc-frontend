@@ -13,7 +13,7 @@ button:hover{
 }
 .landingPage__bodyContainer{
   display: flex;
-  margin: 1% 5% 5% 5%;
+  margin: -5% 5% 0% 5%;
 }
 .landingPage__navItemButton{
   margin-right: 15%;
@@ -143,9 +143,23 @@ hr{
   margin: auto;
   text-align: center;
 }
-@media screen and (min-width: 300px) and (max-width: 568px) {
+@media screen and (min-width: 100px) and (max-width: 568px) {
   .landingPageImage{
     display: none !important;
+  }
+  .landingPageHeader{
+    text-align: left;
+    font-size: 38px;
+    margin-top: 0%;
+    padding: 0px 0px 10px;
+  }
+  .landingPageHowTo{
+    display: inline-block;
+    border-radius: 20px;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    padding: 3% 5%;
+    background-color: #F2F4F7;
   }
   .landingPage__logo{
     display: grid;
@@ -153,6 +167,11 @@ hr{
     grid-template-columns: 1fr 1fr 1fr 1fr;
     width: 100%;
     padding-left: 5%;
+  }
+  .landingPage__bodyContainer{
+    display: flex;
+    margin: -15% 5% -10% 5%;
+    padding: 0%;
   }
   .landingPage__appName{
     font-size: 18px;
@@ -257,11 +276,40 @@ hr{
   }
 }
 
-
+@media screen and (min-width: 800px) and (min-height: 900px){
+  .landingPage__bodyContainer{
+    display: flex;
+    height: 80vh !important;
+    /* padding: -50% 0% -50% 0%; */
+    /* height: 10vh; */
+  }
+  .landingPageBody{
+    height: 60vh !important;
+    padding-top: 0%;
+    padding-left: 3%;
+    padding-right: 3%;
+    margin-top: -20% !important;
+    border: 2px solid red;
+  }
+  .landingPageImage{
+    display: block !important;
+    width: 200% !important;
+    height: 60vh !important;
+    padding-top: 0%;
+    padding-left: 3%;
+    padding-right: 3%;
+    margin: 0% !important;
+  }
+}
 @media screen and (min-width: 769px) and (max-width: 1024px){
   .landingPageImage{
     display: block !important;
     width: 100%;
+    height: 60vh;
+    padding-top: 0%;
+    padding-left: 3%;
+    padding-right: 3%;
+    margin: 0% !important;
   }
   .landingPage__bus{
     width: 100%;
@@ -283,7 +331,7 @@ hr{
   }
   .landingPage__bodyContainer{
     display: flex;
-    margin: 3% 0% 0% 0%;
+    margin: -5% 5% 0% 5%;
     padding: 0%;
   }
   /* .landingPage__bodyContainer{

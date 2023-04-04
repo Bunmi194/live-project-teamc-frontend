@@ -1,0 +1,33 @@
+  .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 48px;
+    gap: 1px;
+    /* border: 1px solid red; */
+    position: absolute;
+    width: 400px;
+    height: 335px;
+    left: 481px;
+    top: 160px;
+
+    /* White */
+
+    background: #ffffff;
+    border-radius: 24px;
+  }
+
+    .header_text {
+    color: #012a4a;
+    text-align: center;
+    font-size: 24px;
+    line-height: 24px;
+    font-weight: 700;
+  }
+
+  .p_text{
+    color: #012a4a;
+    text-align: center;
+    font-size: 1rem;
+  }

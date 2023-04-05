@@ -1,4 +1,3 @@
-import { StyledForgotPassword } from '../styles/forgotPassword.styles'
 import getParam from '../utils/getParams'
 import { Button } from '../components/Button'
 import { EnvelopeIcon } from '../assets/EnvelopeIcon'
@@ -46,7 +45,8 @@ const CheckEmail = () => {
             ' We sent a password reset link to your email. Please click the link to reset your password.'
           }
           additionalNode={
-            <p style={{color:"#012a4a"}}>
+            
+            <p style={{ color: "#012a4a", fontSize: "14px" }}>
               
               Didn't received an email?
               <Button

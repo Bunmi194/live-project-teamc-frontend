@@ -1,0 +1,43 @@
+right-content{
+    background: #F2F4F7;
+}
+
+.walletpage-header{
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 140%;
+    letter-spacing: 0.25px;
+    color: #101828;
+    margin: 30px 0;
+}
+
+.walletpage-balance-card{
+      display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 20px;
+    gap: 72px;
+    width: 68rem;
+    height: 9rem;
+    background: #EAECF0;
+
+    border-radius: 4px;
+}
+
+.walletpage-card-description-header{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 140%;
+    letter-spacing: 0.15px;
+    color: #475467;
+}
+
+
+.walletpage-card-description-content{
+    font-weight: 600;
+    font-size: 19px;
+    line-height: 110%;
+    color: #101828;
+}

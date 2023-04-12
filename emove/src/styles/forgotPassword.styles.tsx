@@ -7,7 +7,8 @@ export const StyledForgotPassword = styled.div`
   justify-content: center;
   height: 100vh;
   width: 100vw;
-  background-color: #f5f5f5;
+  background-color: #F2F4F7;;
+  box-sizing:border-box;
   border-radius: 5px;
 
   .card {
@@ -15,12 +16,11 @@ export const StyledForgotPassword = styled.div`
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    padding: 48px;
+    padding: 30px;
     gap: 40px;
-
-    position: absolute;
-    width: 479px;
-    height: 424px;
+    // position: absolute;
+    // width: 479px;
+    height: 370px;
     left: 481px;
     top: 160px;
 
@@ -28,6 +28,7 @@ export const StyledForgotPassword = styled.div`
 
     background: #ffffff;
     border-radius: 24px;
+    margin-top: -76px;
   }
 
   .h3_text_fp {
@@ -36,6 +37,21 @@ export const StyledForgotPassword = styled.div`
     font-size: 24px;
     line-height: 24px;
     font-weight: 700;
+  }
+
+  .form-items{
+    width: 80%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    margin-top: -37px;
+  }
+
+  .form-items p{
+    width: 100%;
+    color: #101828;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
   }
 
   .p form {
@@ -48,7 +64,7 @@ export const StyledForgotPassword = styled.div`
     margin-bottom: 8px;
   }
   form input {
-    width: 100%;
+    width: 96%;
     max-width: 100%;
     padding: 0.6rem 6px;
     outline: none;
@@ -60,9 +76,10 @@ export const StyledForgotPassword = styled.div`
 
   .field {
     margin: 10px 0;
+    width: 27vw;
   }
 
-  .email-field {
+ .password-field{
     border-top-width: 20px;
   }
 
@@ -71,22 +88,25 @@ export const StyledForgotPassword = styled.div`
   }
 
   .signup-btn {
-     padding: 0.35em 1.2em;
+    padding: 0.55em 1.2em;
     border-radius: 5px;
-     margin: 20px 0;
+    margin: 20px 0;
     color: #fff;
-     box-sizing: border-box;
+    outline: auto;
+    box-sizing: border-box;
     background: #f79009;
-     font-weight: 800;
-     text-align: center;
+    font-weight: 800;
+    text-align: center;
     font-size: 1.1em;
-     transition: all 0.2s;
+    transition: all 0.2s;
     align-items: center;
     width: 100%;
     cursor: pointer;
   }
   .login_link {
     text-align: center;
+    margin-top: -27px;
+  
   }
   .login_link a {
     color: #f79009;

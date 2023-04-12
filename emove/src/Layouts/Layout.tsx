@@ -9,6 +9,8 @@ export const Layout: React.FC<{
   singleColumnLeft?: boolean
   singleColumnRight?: boolean
   additionalClasses?: string
+  customLeftContentClasses?:string
+  customRightContentClasses?:string
 }> = (props: {
   leftContent?: ReactNode
   rightContent?: ReactNode
@@ -18,29 +20,38 @@ export const Layout: React.FC<{
   singleColumnLeft?: boolean
   singleColumnRight?: boolean
   additionalClasses?: string
+  customLeftContentClasses?:string
+  customRightContentClasses?:string
 }) => {
   return (
-    <div style={{ display: 'flex' }}>
+    <>
       <div
-        className={`layout ${props.additionalClasses? props.additionalClasses : "" }`}
+        className={(`layout ${props.additionalClasses? props.additionalClasses : "" }`).trim()}
         style={{
           flexDirection: props.useTopBottomLayout ? 'column' : 'row',
           justifyContent: props.useTopBottomLayout ? 'start' : 'center',
         }}
       >
         <div
-          className='left-content'
-          style={{ width: props.leftContentWidth }}
+          className={(`base-left-content ${props.customLeftContentClasses? props.customLeftContentClasses : "" }`).trim()}
+          style={{
+            width: !props.useTopBottomLayout ? props.leftContentWidth : "100%",
+            height: props.useTopBottomLayout ? props.leftContentWidth : "100%"
+          }}
         >
           {props.leftContent && (props.leftContent)} 
         </div>
         <div
-          className='right-content'
-          style={{ width: props.rightContentWidth }}
+          className={(`base-right-content ${props.customRightContentClasses? props.customRightContentClasses : "" }`).trim()}
+          style={{
+           width: !props.useTopBottomLayout ? props.rightContentWidth : "100%",
+            height: props.useTopBottomLayout ? props.rightContentWidth : "100%"
+          }}
         >
           {props.rightContent && (props.rightContent)}
         </div>
       </div>
-    </div>
+    </>
   )
 }
+

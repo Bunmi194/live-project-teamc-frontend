@@ -1,0 +1,36 @@
+.navigation{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+.logo{
+
+}
+
+.routes{
+    display: flex;
+}
+
+.route{
+    list-style: none;
+    margin-right: 32px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 140%;
+    letter-spacing: 0.15px;
+    color: #101828;
+}
+
+.route:active{
+    color: #F79009;
+}
+
+.dropdown{
+    margin: 10px 0px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 140%;
+    letter-spacing: 0.15px;
+    color: #101828;
+}
+

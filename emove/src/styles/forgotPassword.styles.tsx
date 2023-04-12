@@ -7,7 +7,7 @@ export const StyledForgotPassword = styled.div`
   justify-content: center;
   height: 100vh;
   width: 100vw;
-  background-color: #E5E5E5;
+  background-color: #F2F4F7;;
   box-sizing:border-box;
   border-radius: 5px;
 

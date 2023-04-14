@@ -9,6 +9,8 @@ import { Arrow } from '../components/Arrow'
 
 
 export const DashboardPage = () => {
+  // const userCompleteDetails: string = localStorage.getItem('userDetails') as unknown as string;
+  // const userObject = JSON.parse(userCompleteDetails).user;
   return (
       <>
         {/* <Layout useTopBottomLayout

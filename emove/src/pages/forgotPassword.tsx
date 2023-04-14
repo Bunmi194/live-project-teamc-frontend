@@ -7,16 +7,17 @@ import "../styles/forgotPassword.styles.css"
 
 
 const ForgotPassword: React.FC = () => {
-  const [email, setEmail] = useState()
-  const [loading, setLoading] = useState()
+  const [email, setEmail] = useState("")
+  const [loading, setLoading] = useState(false)
 
   const navigate = useNavigate()
 
   const handleSubmit = async (e: any) => {
-    e.preventDefault()
+    e.preventDefault();
+    setLoading(true);
     console.log(email)
-    const res = await fetch(`http://localhost:3030/v1/users/forgotpassword`, {
-      method: 'post',
+    const res = await fetch(`https://emove-teamc-new.onrender.com/v1/users/forgotpassword`, {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origins': '*',
@@ -24,9 +25,16 @@ const ForgotPassword: React.FC = () => {
       body: JSON.stringify({ email }),
     })
     console.log(res)
+    const result = await res.json();
+    console.log('result: ', result);
     if (res.status === 200) {
+      setLoading(false);
       navigate(`/checkemail/${email}`)
       console.log('sent')
+    }else{
+      setLoading(false);
+      alert(result.message);
+      return;
     }
   }
   return (

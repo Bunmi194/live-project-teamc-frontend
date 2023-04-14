@@ -9,30 +9,45 @@ export const ResetPassword = () => {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [error, setError] = useState(false)
+  const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
   const href = window.location.href
   const token = getParam(href)
 
   const handleSubmit: MouseEventHandler<HTMLButtonElement> = async (e: any) => {
-    e.preventDefault()
+    e.preventDefault();
+    setLoading(true);
     if (confirmPassword !== password) {
-      return setError(true)
+      setLoading(false);
+      alert('Passwords do not match');
+      return setError(true);
     }
     try {
-      const res = await fetch(`http://localhost:3030/v1/users/resetpassword/${token}`, {
-        method: 'post',
+      //https://emove-teamc-new.onrender.com
+      const res = await fetch(`https://emove-teamc-new.onrender.com/v1/users/resetpassword/${token}`, {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origins': '*',
         },
         body: JSON.stringify({ password, confirmPassword }),
       })
+      const result = await res.json();
       if (res.status === 200) {
-        console.log('OK')
-        navigate('/success')
+        setLoading(false);
+        console.log('OK');
+        navigate('/success');
+        return;
+      }else{
+        setLoading(false);
+        alert(`Error: ${result.message}`);
+        console.log("result: ", result);
+        return;
       }
     } catch (error) {
-      console.log(error)
+      setLoading(false);
+      console.log(error);
+      return;
     }
   }
 
@@ -64,7 +79,7 @@ export const ResetPassword = () => {
                   </div>
 
                   <button className='signup-btn' onClick={handleSubmit}>
-                    Reset Password
+                    {loading ? "Just a Sec..." : "Reset Password"}
                   </button>
                 </div>
               }

@@ -42,7 +42,7 @@
   margin-top: 8px;
 }
 
-input{
+input, select, option{
   top: 0;
   left: 0;
   width: 100%;

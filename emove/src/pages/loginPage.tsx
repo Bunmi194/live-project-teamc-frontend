@@ -3,18 +3,24 @@ import { Link, useNavigate } from 'react-router-dom'
 import { Layout } from '../Layouts/Layout'
 import { RoadIcon } from '../assets/RoadIcon'
 import '../styles/login.styles.css'
-import SignUpImage from '../assets/sign-up-image.png'
+import SignUpImage from '../assets/sign-up-image.png';
 
 export const LoginPage = () => {
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
-  const [loading, setLoading] = useState()
+  const [loading, setLoading] = useState(false);
+  const [ error, setError ] = useState("");
 
   const navigate = useNavigate()
 
   const handleSubmit = async (e: any) => {
-    e.preventDefault()
-    const res = await fetch(`http://localhost:3030/v1/users/login`, {
+    e.preventDefault();
+    if(!email || !password){
+      alert("Please enter your email and password");
+      return;
+    }
+    setLoading(true);
+    const res = await fetch(`https://emove-teamc-new.onrender.com/v1/users/login`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
@@ -22,10 +28,22 @@ export const LoginPage = () => {
       },
       body: JSON.stringify({ email, password }),
     })
-    console.log(res)
+    const result: any = await res.json();
+    console.log("result: ", result);
     if (res.status === 200) {
-      navigate(`/checkemail/${email}`)
+      // navigate(`/checkemail/${email}`)
+      //go to dashboard- user or admin dashboard
+      setLoading(false);
+      const details = JSON.stringify(result);
+      localStorage.setItem('userDetails', details );
+      navigate('/dashboard');
       console.log('sent')
+    }else{
+      //error
+      setLoading(false);
+      const err = result.message;
+      setError(`Error: ${err}`);
+      return;
     }
   }
   return (
@@ -54,7 +72,7 @@ export const LoginPage = () => {
                 </div>
               </div> */}
                   <p className='login-header-text'>Hi, Welcome back</p>
-
+                  {error && (<p className='error'>{error}</p>)}
                   <label>Email:</label>
                   <input
                     type='email'

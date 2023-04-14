@@ -1,16 +1,26 @@
 import getParam from '../utils/getParams'
 import { Button } from '../components/Button'
 import { EnvelopeIcon } from '../assets/EnvelopeIcon'
-import { Card } from '../components/Card'
+import { Card } from '../components/Card';
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 const CheckEmail = () => {
-  const email = getParam(window.location.href)
+  const navigate = useNavigate();
+  const email = getParam(window.location.href);
+  const [ loading, setLoading ] = useState(false);
+
+  const goToHome = () => {
+    navigate("/login");
+    return;
+  }
 
   const handleClick = async (e: any) => {
-    e.preventDefault()
-    console.log(email)
-    const res = await fetch(`http://localhost:3030/v1/users/forgotpassword`, {
-      method: 'post',
+    e.preventDefault();
+    console.log(email);
+    setLoading(true);
+    const res = await fetch(`https://emove-teamc-new.onrender.com/v1/users/forgotpassword`, {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origins': '*',
@@ -19,7 +29,11 @@ const CheckEmail = () => {
     })
     console.log(res)
     if (res.status === 200) {
-      console.log('sent')
+      console.log('sent');
+      setLoading(true);
+    }else{
+      setLoading(true);
+      return;
     }
   }
   return (
@@ -50,13 +64,14 @@ const CheckEmail = () => {
               
               Didn't received an email?
               <Button
+                disabled={loading}
                 handleClick={handleClick}
                 text={'Click to Resend'}
                 additionalClasses={'checkEmailButton'}
               />
             </p>
           }
-          button={<Button text={'Back to Login'} additionalClasses={'successButton'}/>}        
+          button={<Button text={'Back to Login'} additionalClasses={'successButton'} handleClick={goToHome}/>}        
         />
       </div>
     </>

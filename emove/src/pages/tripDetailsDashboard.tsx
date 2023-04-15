@@ -1,7 +1,7 @@
 import React from 'react'
 import '../styles/tripDetailsDashboard.styles.css'
 import { DashboardLayout } from '../Layouts/DashboardLayout'
-import { Navbar } from '../components/Navbar'
+import {  UserNavbar } from '../components/UserNavbar'
 import { Layout } from '../Layouts/Layout'
 import { Button } from '../components/Button'
 import { Sidebar } from '../components/Sidebar'
@@ -10,7 +10,7 @@ export const TripDetailsDashboard = () => {
   return (
     <>
       <DashboardLayout
-        navbar={<Navbar />}
+        navbar={<UserNavbar />}
         navbarHeight='15%'
         bodyContainerHeight='85%'
         mainContentHeight='85%'
@@ -18,7 +18,7 @@ export const TripDetailsDashboard = () => {
         customLeftContentClasses='dashboard-layout-header'
         customRightContentClasses='dashboard-layout-content'
         additionalClasses='dashboard-layout-containers'
-        toggleSidebar
+        // toggleSidebar
         sidebar={<Sidebar />}
         mainContentWidth='80%'
         sidebarWidth='20%'

@@ -6,19 +6,19 @@ const Form = () => {
      
     <form className="form_Dashboard">
       <div className="form_Dashboard_field">
-        <label className="label" htmlFor="name">
+        <label className="form_Dashboard_label" htmlFor="name">
           Full Name
         </label>
-        <div className="inputbox">
+        <div className="form_Dashboard_inputbox">
           <input type="text" placeholder="Enter your full name" />
         </div>
       </div>
-      <div className="field">
-        <label className="label" htmlFor="route">
+      <div className="form_Dashboard_field">
+        <label className="form_Dashboard_label" htmlFor="route">
           Route of operation
         </label>
-        <div className="inputbox">
-          <select className="route">
+        <div className="form_Dashboard_inputbox">
+          <select className="form_Dashboard_route">
             <option>select</option>
             <option>Oshodi - Ikeja</option>
             <option>Oshodi - Ikeja</option>
@@ -28,23 +28,23 @@ const Form = () => {
           </select>
         </div>
       </div>
-      <div className="field">
-        <label className="label" htmlFor="phone">
+      <div className="form_Dashboard_field">
+        <label className="form_Dashboard_label" htmlFor="phone">
           Phone number
         </label>
-        <div className="inputbox">
+        <div className="form_Dashboard_inputbox">
           <input
-            className="phone"
+            className="form_Dashboard_phone"
             type="text"
             placeholder="Enter your phone number"
           />
         </div>
       </div>
-      <div className="field">
-        <label className="label" htmlFor="Account">
+      <div className="form_Dashboard_field">
+        <label className="form_Dashboard_label" htmlFor="Account">
           Account Nnumber
         </label>
-        <div className="inputbox">
+        <div className="form_Dashboard_inputbox">
           <input
             className="account"
             type="number"

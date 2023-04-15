@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import '../styles/navbar.styles.css'
 import { RoadIcon } from '../assets/RoadIcon'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-export const Navbar = () => {
+export const UserNavbar = () => {
   const [ dropDown, setDropDown ] = useState(false);
   const userCompleteDetails: string = localStorage.getItem('userDetails') as unknown as string;
   const userObject = JSON.parse(userCompleteDetails).user;
@@ -41,9 +41,9 @@ export const Navbar = () => {
           </div>
           <div className='routes-container'>
             <ul className='routes'>
-              <li className='route'>Book a route</li>
-              <li className='route'>Payment</li>
-              <li className='route'>Wallet</li>
+              <li className='route'><Link to="/user/book_trip">Book a route</Link></li>
+              <li className='route'><Link to="/user/make_payment">Payment</Link></li>
+              <li className='route'><Link to="/user/wallet">Wallet</Link></li>
             </ul>
           </div>
           <div className='dropdown' style={{marginBottom: ""}}>Hi, {userObject.firstName}  <button style={{width: "20px"}} type='button' onClick={toggleDropDown}>&#8964;</button>

@@ -1,12 +1,22 @@
-import React from 'react'
-import '../styles/tripDetailsDashboard.styles.css'
+import React, { useContext } from 'react'
+import '../styles/adminpricingpage.styles.css'
 import { DashboardLayout } from '../Layouts/DashboardLayout'
 import { Layout } from '../Layouts/Layout'
 import { Button } from '../components/Button'
 import { Sidebar } from '../components/Sidebar'
 import { AdminNavbar } from '../components/AdminNavbar'
+import { ModalContext } from '../context/admindashContext'
+import EditPrice from '../components/EditPage'
+import { Link } from 'react-router-dom'
+import Form_ from '../components/Form_'
 
-export const AdminDashboard = () => {
+export const AdminDriversPage = () => {
+  // const { modals, setModals }:any = useContext(ModalContext)
+  // const { editPriceModal } = modals
+
+  // const handleShow = () => {
+  //   setModals({...modals, editPriceModal: true})
+  // }
   return (
     <>
       <DashboardLayout
@@ -24,19 +34,24 @@ export const AdminDashboard = () => {
         sidebarWidth='20%'
         mainContent={
           <Layout
-            leftContentWidth='65%'
-            rightContentWidth='35%'
+            leftContentWidth='90%'
+            rightContentWidth='10%'
             additionalClasses='dashboard-journey-layout'
             leftContent={
-              <div className='tripdetails-card'>
-                
-              </div>
+              <main>
+             
+                <div className='bottom'>
+                  <Form_ />
+                </div>
+              </main>
             }
             customRightContentClasses='tripdetails-right-content'
-            rightContent={<div className='tripdetails-image-container'></div>}
           />
         }
-        header={<div className='tripdetails-header'>&#8592; Book a Trip</div>}
+        header={   <div className='flex'>
+                  <h1>Register a driver</h1>
+                  <Link className='view-drivers' to='/admin/driver'>View all drivers</Link>
+                </div>}
       />
     </>
   )

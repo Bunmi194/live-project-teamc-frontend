@@ -1,5 +1,6 @@
-import Button from "./Button_Dashboard";
+//import Button from "./Button_Dashboard";
 import  "../styles/_form.styles.css";
+import { Button } from "./Button";
 
 const Form = () => {
   return (
@@ -52,19 +53,19 @@ const Form = () => {
           />
         </div>
       </div>
-      <div className="ID field">
+      <div className="ID form_Dashboard_field">
         <label htmlFor="files">Upload valid ID</label>
-        <div className="field1">
-          <div className="photobox">
+        <div className="form_Dashboard_field1">
+          <div className="form_Dashboard_photobox">
             <label htmlFor="files">Upload file</label>
             <input id="files" style={{ visibility: "hidden" }} type="file" />
           </div>
         </div>
       </div>
-      <div className="pho field">
+      <div className="pho form_Dashboard_field">
         <label htmlFor="files">Upload photo</label>
-        <div className="field1">
-          <div className="photobox">
+        <div className="form_Dashboard_field1">
+          <div className="form_Dashboard_photobox">
             <label htmlFor="files" className="btn">
               Upload photo
             </label>
@@ -72,7 +73,8 @@ const Form = () => {
           </div>
         </div>
       </div>
-      <Button bookTrip={""}  formText="Sign up driver" text={""}  />
+      {/* <Button bookTrip={""} formText="Sign up driver" text={""} /> */}
+     <Button text={'Sign Up'} additionalClasses={'successButton dashboardButton'}  />
           </form>  
 
   );

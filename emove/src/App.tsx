@@ -23,8 +23,11 @@ import { PaymentDashboard } from './pages/paymentDashboard';
 import { ViewPaymentMethod } from './pages/viewPaymentMethod';
 import { WalletPage } from './pages/walletPage';
 import { MoreRoutes } from './components/MoreRoutes';
-import { AdminDashboard } from './pages/AdminDashboard';
+import { AdminPricingPage } from './pages/AdminPricingPage';
 import { FormModal } from './components/FormModal';
+import { AdminDriversPage } from './pages/AdminDriversPage';
+import { AdminDashboardPage } from './pages/AdminDashboardPage';
+import { AdminViewDriversPage } from './pages/AdminViewDriversPage';
 
 // import tw from "tailwind-styled-components";
 
@@ -50,7 +53,10 @@ function App() {
       
 
       {/*Admin Dashboard  */}
-      <Route path="/admin" element={<AdminDashboard />} ></Route>
+      <Route path="/admin/pricing" element={<AdminPricingPage />} ></Route>
+      <Route path="/admin/drivers" element={<AdminDriversPage />} ></Route>
+      <Route path="/admin/driver" element={<AdminViewDriversPage />} ></Route>
+      <Route path="/admin/dashboard" element={<AdminDashboardPage />} ></Route>
 
 
       <Route path="/moreroutes" element={<MoreRoutes />} ></Route>

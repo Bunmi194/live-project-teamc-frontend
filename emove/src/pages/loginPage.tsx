@@ -36,7 +36,7 @@ export const LoginPage = () => {
       setLoading(false);
       const details = JSON.stringify(result);
       localStorage.setItem('userDetails', details );
-      navigate('/dashboard');
+      navigate('/user/book_trip');
       console.log('sent')
     }else{
       //error

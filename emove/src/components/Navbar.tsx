@@ -17,7 +17,7 @@ export const Navbar = () => {
   //   }
   // })
   const toggleDropDown = () => {
-    setDropDown(!dropDown);
+    setDropDown((prev)=> !prev);
   }
   // const handleClickOutside = (event: any) => {
   //   if (ref.current && !ref.current.contains(event.target)) {

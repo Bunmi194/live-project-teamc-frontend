@@ -20,7 +20,7 @@
 
 
     width: 35.5rem;
-    height: 25rem;
+    height: 26rem;
     left: 149px;
     top: 213px;
 
@@ -50,7 +50,7 @@
     padding: 10px 24px;
     gap: 8px;
     align-self: flex-start;
-    width: 6rem;
+    width: 7rem;
     height: 1rem;
     background: #FFFAEB;
     border-radius: 8px; 
@@ -101,3 +101,8 @@
 .dashboard-route-arrow svg{
      width: 100%;
 }
+
+.dashboard-route-moreoptions{
+    width: 100%
+}
+

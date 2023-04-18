@@ -1,24 +1,25 @@
-import Button from "./Button_Dashboard";
+//import Button from "./Button_Dashboard";
 import  "../styles/_form.styles.css";
+import { Button } from "./Button";
 
 const Form = () => {
   return (
      
     <form className="form_Dashboard">
       <div className="form_Dashboard_field">
-        <label className="label" htmlFor="name">
+        <label className="form_Dashboard_label" htmlFor="name">
           Full Name
         </label>
-        <div className="inputbox">
+        <div className="form_Dashboard_inputbox">
           <input type="text" placeholder="Enter your full name" />
         </div>
       </div>
-      <div className="field">
-        <label className="label" htmlFor="route">
+      <div className="form_Dashboard_field">
+        <label className="form_Dashboard_label" htmlFor="route">
           Route of operation
         </label>
-        <div className="inputbox">
-          <select className="route">
+        <div className="form_Dashboard_inputbox">
+          <select className="form_Dashboard_route">
             <option>select</option>
             <option>Oshodi - Ikeja</option>
             <option>Oshodi - Ikeja</option>
@@ -28,23 +29,23 @@ const Form = () => {
           </select>
         </div>
       </div>
-      <div className="field">
-        <label className="label" htmlFor="phone">
+      <div className="form_Dashboard_field">
+        <label className="form_Dashboard_label" htmlFor="phone">
           Phone number
         </label>
-        <div className="inputbox">
+        <div className="form_Dashboard_inputbox">
           <input
-            className="phone"
+            className="form_Dashboard_phone"
             type="text"
             placeholder="Enter your phone number"
           />
         </div>
       </div>
-      <div className="field">
-        <label className="label" htmlFor="Account">
+      <div className="form_Dashboard_field">
+        <label className="form_Dashboard_label" htmlFor="Account">
           Account Nnumber
         </label>
-        <div className="inputbox">
+        <div className="form_Dashboard_inputbox">
           <input
             className="account"
             type="number"
@@ -52,19 +53,19 @@ const Form = () => {
           />
         </div>
       </div>
-      <div className="ID field">
+      <div className="ID form_Dashboard_field">
         <label htmlFor="files">Upload valid ID</label>
-        <div className="field1">
-          <div className="photobox">
+        <div className="form_Dashboard_field1">
+          <div className="form_Dashboard_photobox">
             <label htmlFor="files">Upload file</label>
             <input id="files" style={{ visibility: "hidden" }} type="file" />
           </div>
         </div>
       </div>
-      <div className="pho field">
+      <div className="pho form_Dashboard_field">
         <label htmlFor="files">Upload photo</label>
-        <div className="field1">
-          <div className="photobox">
+        <div className="form_Dashboard_field1">
+          <div className="form_Dashboard_photobox">
             <label htmlFor="files" className="btn">
               Upload photo
             </label>
@@ -72,7 +73,8 @@ const Form = () => {
           </div>
         </div>
       </div>
-      <Button bookTrip={""}  formText="Sign up driver" text={""}  />
+      {/* <Button bookTrip={""} formText="Sign up driver" text={""} /> */}
+     <Button text={'Sign Up'} additionalClasses={'successButton dashboardButton'}  />
           </form>  
 
   );

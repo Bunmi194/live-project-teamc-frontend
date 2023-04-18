@@ -1,7 +1,7 @@
 import React from 'react'
 import '../styles/viewPaymentMethod.styles.css'
 import { DashboardLayout } from '../Layouts/DashboardLayout'
-import { Navbar } from '../components/Navbar'
+import {  UserNavbar } from '../components/UserNavbar'
 import { Layout } from '../Layouts/Layout'
 import { Button } from '../components/Button'
 import { DeleteIcon } from '../components/DeleteIcon'
@@ -12,7 +12,7 @@ export const ViewPaymentMethod = () => {
   return (
       <>
         <DashboardLayout
-          navbar={<Navbar />}
+          navbar={<UserNavbar />}
           navbarHeight='15%'
           bodyContainerHeight='85%'
           mainContentHeight='85%'

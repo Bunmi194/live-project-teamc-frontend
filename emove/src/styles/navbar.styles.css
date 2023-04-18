@@ -35,6 +35,7 @@
 }
 
 .dropdown{
+    display: flex;
     margin: 10px 0px;
     font-weight: 400;
     font-size: 16px;
@@ -53,4 +54,26 @@
     text-decoration: none;
     background: white;
 
+}
+
+.user-nav-dropdown{
+
+    margin: 10px 0px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 140%;
+    letter-spacing: 0.15px;
+    color: #101828;
+    
+
+}
+.user-dropdown-button{
+  
+    border: none;
+    background: transparent;
+    font-size: 1rem;
+}
+
+.link-active{
+    color: #F79009 !important;
 }

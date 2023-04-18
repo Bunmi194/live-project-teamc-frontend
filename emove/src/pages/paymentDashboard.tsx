@@ -27,6 +27,7 @@ export const PaymentDashboard = () => {
               leftContent={
                   <div className='paymentdashboard-body'>
                       <div className="paymentdashboard-card">
+                
                           {/* <CreditCardImage/> */}
                       </div>
                       <div className="paymentdashboard-addcard">

@@ -87,16 +87,3 @@ export const DashboardLayout: React.FC<IdashboardLayout> = (props:IdashboardLayo
 
 
 
-{/* <Layout
-                        useTopBottomLayout
-                        leftContentWidth= {props.headerHeight && props.headerHeight}
-                        rightContentWidth={props.mainContentHeight && props.mainContentHeight}
-                        customLeftContentClasses={props.customLeftContentClasses && props.customLeftContentClasses}
-                        customRightContentClasses={props.customRightContentClasses && props.customRightContentClasses}
-                        additionalClasses={props.additionalClasses && props.additionalClasses}
-                        // customLeftContentClasses='dashboard-layout-header'
-                        // customRightContentClasses='dashboard-layout-content'
-                        // additionalClasses='dashboard-layout-containers'
-                        leftContent={props.header && props.header}
-                        rightContent={props.mainContent && props.mainContent }
-                    /> */}

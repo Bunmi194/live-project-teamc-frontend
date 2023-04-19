@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "../styles/barchart.styles.css"
 import { Chart } from 'react-google-charts'
 import { FaCaretUp } from 'react-icons/fa'
@@ -13,6 +13,14 @@ const BarChart: React.FC<IBarChartProps> = ({ data, title }:IBarChartProps) => {
     ['Label', 'Value'],
     ...data.map(([label, value]) => [label, value]),
   ]
+  const [ isMounted, setIsMounted ] = useState(false);
+
+  useEffect(()=>{
+    setIsMounted(true);
+    return ()=>{
+      setIsMounted(false);
+    }
+  }, [])
 
   return (
     <section className='barchart-cover'>
@@ -56,7 +64,7 @@ const BarChart: React.FC<IBarChartProps> = ({ data, title }:IBarChartProps) => {
             </div>
           </div>
         </div>
-        <Chart
+        { isMounted && <Chart
           chartType="ColumnChart"
           data={chartData}
           options={{
@@ -76,9 +84,11 @@ const BarChart: React.FC<IBarChartProps> = ({ data, title }:IBarChartProps) => {
           width="100%"
           height="400px"
         />
+}
       </div>
     </section>
   )
 }
+
 
 export default BarChart

@@ -6,8 +6,8 @@ import '../styles/login.styles.css'
 import SignUpImage from '../assets/sign-up-image.png';
 
 export const LoginPage = () => {
-  const [email, setEmail] = useState()
-  const [password, setPassword] = useState()
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
   const [loading, setLoading] = useState(false);
   const [ error, setError ] = useState("");
 

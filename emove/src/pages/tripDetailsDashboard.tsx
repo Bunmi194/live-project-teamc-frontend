@@ -1,12 +1,81 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import '../styles/tripDetailsDashboard.styles.css'
 import { DashboardLayout } from '../Layouts/DashboardLayout'
 import {  UserNavbar } from '../components/UserNavbar'
 import { Layout } from '../Layouts/Layout'
 import { Button } from '../components/Button'
-import { Sidebar } from '../components/Sidebar'
+import { Sidebar } from '../components/Sidebar';
+import { Link } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
+import { response } from 'express'
 
+interface tripDetailsType {
+  pickUpStation?: string;
+  destination?: string;
+  price?: number;
+}
+// {tripDetails?.route[0].pickUpStation}
 export const TripDetailsDashboard = () => {
+  const location = useLocation();
+  const [ tripDetails, setTripDetails ] = useState<tripDetailsType>({});
+  const today = new Date();
+  console.log("value:",location.state);
+  const date = today.getMonth();
+  const date2 = today.getDate();
+  console.log("local: ", JSON.parse(`${localStorage.getItem('userDetails')}`))
+
+const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+
+  function getDateSuffix(date: Date) {
+    const suffixes = ['th', 'st', 'nd', 'rd'];
+    const day = date.getDate();
+    const relevantDigits = (day < 30) ? day % 20 : day % 30;
+    const suffix = (relevantDigits <= 3) ? suffixes[relevantDigits] : suffixes[0];
+    return `${day}${suffix}`;
+  }
+
+let hours = today.getHours();
+const minutes = today.getMinutes();
+const amPm = hours >= 12 ? 'PM' : 'AM';
+hours = hours % 12 || 12;
+const formattedTime = `${hours}:${minutes.toLocaleString('en-US', {minimumIntegerDigits: 2})} ${amPm}`;
+const formattedDate = `${months[date]}-${getDateSuffix(today)}`
+console.log(formattedTime);
+
+const handleClick = async (e:any) => {
+  alert('Got ya!');
+  const response = await fetch(`https://emove-teamc-new.onrender.com/v1/users/trips/`, {
+    method: "POST",
+    headers: {
+      "Access-Control-Allow-Origin": "*"
+    }        
+  })
+  const result = await response.json();
+}
+
+  const getRouteData = () => {
+    const getRoute = async (idd:string) => {
+      const response = await fetch(`https://emove-teamc-new.onrender.com/v1/routes/getRoute/${id}`, {
+        method: "GET",
+        headers: {
+          "Access-Control-Allow-Origin": "*"
+        }        
+      })
+      const result = await response.json();
+      setTripDetails(result.route[0]);
+      console.log("fetched One: ", result);
+      console.log("fetched BIG: ", result.route[0].pickUpStation);
+    };
+    const id = location.state;
+    getRoute(id);
+  }
+  
+  
+
+  useEffect(getRouteData, []);
+  console.log("tripDetails: ",tripDetails)
+
   return (
     <>
       <DashboardLayout
@@ -36,19 +105,19 @@ export const TripDetailsDashboard = () => {
                 <div className='tripdetails-journey-card'>
                   <div className='tripdetails-card-description'>
                     <p className='tripdetails-card-description-header'>Destination</p>
-                    <p className='tripdetails-card-description-content'>Bariga - Gbagada</p>
+                    <p className='tripdetails-card-description-content'>{tripDetails.pickUpStation} - {tripDetails.destination}</p>
                   </div>
                   <div className='tripdetails-card-description'>
                     <p className='tripdetails-card-description-header'>Amount</p>
-                    <p className='tripdetails-card-description-content'>N 600.00</p>
+                    <p className='tripdetails-card-description-content'>&#8358; {tripDetails.price}</p>
                   </div>
                   <div className='tripdetails-card-description'>
                     <p className='tripdetails-card-description-header'>Date</p>
-                    <p className='tripdetails-card-description-content'>Mon 7th - 4:00 PM</p>
+                    <p className='tripdetails-card-description-content'>{formattedDate} - {formattedTime}</p>
                   </div>
                 </div>
                 <div className='tripdetails-button'>
-                  {<Button text={'Continue'} additionalClasses={'successButton dashboardButton'} />}
+                  {<Button text={'Book a Trip'} additionalClasses={'successButton dashboardButton'} handleClick={handleClick}/>}
                 </div>
               </div>
             }
@@ -56,7 +125,7 @@ export const TripDetailsDashboard = () => {
             rightContent={<div className='tripdetails-image-container'></div>}
           />
         }
-        header={<div className='tripdetails-header'>&#8592; Book a Trip</div>}
+        header={<Link to="/user/book_trip"><div className='tripdetails-header'>&#8592; Book a Trip</div></Link>}
       />
     </>
   )

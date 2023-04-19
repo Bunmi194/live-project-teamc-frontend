@@ -5,7 +5,7 @@ import {  UserNavbar } from '../components/UserNavbar'
 import { Layout } from '../Layouts/Layout'
 import { Button } from '../components/Button'
 import { Sidebar } from '../components/Sidebar';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
 import { response } from 'express'
 
@@ -22,7 +22,8 @@ export const TripDetailsDashboard = () => {
   console.log("value:",location.state);
   const date = today.getMonth();
   const date2 = today.getDate();
-  console.log("local: ", JSON.parse(`${localStorage.getItem('userDetails')}`))
+  // console.log("local: ", JSON.parse(`${localStorage.getItem('userDetails')}`))
+  const navigate = useNavigate();
 
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -43,15 +44,48 @@ const formattedTime = `${hours}:${minutes.toLocaleString('en-US', {minimumIntege
 const formattedDate = `${months[date]}-${getDateSuffix(today)}`
 console.log(formattedTime);
 
+//fetch userId
+const userId = JSON.parse(`${localStorage.getItem("userDetails")}`).user._id;
+
+// console.log('details: ', JSON.parse(`${localStorage.getItem("userDetails")}`).user._id)
+
+const id = location.state;
+const userIdInStorage = JSON.parse(`${localStorage.getItem("userDetails")}`).user._id;
+
+
 const handleClick = async (e:any) => {
-  alert('Got ya!');
-  const response = await fetch(`https://emove-teamc-new.onrender.com/v1/users/trips/`, {
+  const response = await fetch(`https://emove-teamc-new.onrender.com/v1/users/booktrip/`, {
     method: "POST",
     headers: {
+      "Content-Type": "application/json",
       "Access-Control-Allow-Origin": "*"
-    }        
+    },
+    body: JSON.stringify({
+      routeId: id,
+      userId
+    })    
   })
   const result = await response.json();
+  if(result.message === "Trip created successfully"){
+    //update user's record
+    ///user/:id
+    // console.log("IID: ", id)
+    console.log("userIdInStorage: ", userIdInStorage)
+    const userData = await fetch(`https://emove-teamc-new.onrender.com/v1/users/user/${userIdInStorage}`);
+    const result = await userData.json();
+    console.log("result.user: ", result.user)
+    if(result.user){
+      const user = {...JSON.parse(`${localStorage.getItem('userDetails')}`), ...result.user}
+      console.log("USER: ", user);
+      localStorage.setItem("userDetails", JSON.stringify(user));
+    }
+    alert("Trip booked successfully");
+    navigate("/user/book_trip");
+    return;
+  }
+  alert("Failed to book trip");
+  navigate("/user/book_trip");
+  return;
 }
 
   const getRouteData = () => {
@@ -74,7 +108,7 @@ const handleClick = async (e:any) => {
   
 
   useEffect(getRouteData, []);
-  console.log("tripDetails: ",tripDetails)
+  // console.log("tripDetails: ",tripDetails)
 
   return (
     <>

@@ -15,7 +15,7 @@ interface ICard {
 }
 export const Card:React.FC< ICard> = (props:ICard) => {
   return (
-      <div className='card' style={{width: props.width, height: props.height}}>
+      <div className='card' style={{width: props.width, height: props.height, zIndex: "10"}}>
           {props.icon && props.icon} 
           <h3 className='header_text'>{props.headerText}</h3>
           {props.bodyText && <p className='p_text'>{props.bodyText}</p>}

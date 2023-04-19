@@ -92,7 +92,7 @@ export const DashboardPage = () => {
                     onChange={handleChange}
                     
                   >
-                    <option  className='more-routes-list-items' label='See more options'>See more options</option> 
+                    <option  className='more-routes-list-items' >See more options</option> 
 
                     
                       {routes &&

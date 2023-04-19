@@ -15,7 +15,7 @@ export const MoreRoutes = () => {
     const [selectedValue, setSelectedValue] = useState("")
     useEffect(() => {
         const getRoutes = async() => {
-            const response = await fetch(`http://localhost:3030/v1/routes/getAllRoutes`)
+            const response = await fetch(`https://emove-teamc-new.onrender.com/v1/routes/getAllRoutes`)
             const responseJSON = await response.json()
             const data = responseJSON.routes
             setRoutes(data)

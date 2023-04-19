@@ -48,7 +48,7 @@ export const UserNavbar = () => {
               <Link to='/user/book_trip' className={pathname === "/user/book_trip" ?'link-active':"" }>Book a route</Link>
             </li>
             <li className='route'>
-              <Link to='/user/make_payment'  className={pathname === "/user/make_payment" ?'link-active':"" }>Payment</Link>
+              <Link to='/user/make_payment'  className={pathname === "/user/make_payment" ?'link-active':"" }>Trips</Link>
             </li>
             <li className='route'>
               <Link to='/user/wallet' className={pathname === "/user/wallet" ?'link-active':"" }>Wallet</Link>

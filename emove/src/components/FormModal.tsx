@@ -30,7 +30,7 @@ export const FormModal = () => {
     const onHandleClick = async (e:any) => {
         e.preventDefault();
         handleCloseModal();
-        const response = await fetch(`http://localhost:3030/v1/users/paystack/pay`, {
+        const response = await fetch(`https://emove-teamc-new.onrender.com/v1/users/paystack/pay`, {
           method: "POST",
           headers: {
             'Content-Type': 'application/json',
@@ -39,7 +39,7 @@ export const FormModal = () => {
           body: JSON.stringify({
             email,
             full_name: fullName,
-            amount
+            amount,
           })      
         })
         const result = await response.json();
@@ -61,7 +61,7 @@ export const FormModal = () => {
           additionalNode={
               <>
               {/* <FaTimes onClick={handleCloseModal} className="close" />  */}
-              <form className='signup-form-items'>
+              <form className='signup-form-items' >
                   <div className="choose-bank">
                     <label>Fullname:</label>
                     <input

@@ -15,46 +15,32 @@ import ReactModal from 'react-modal'
 
 
 export const WalletPage = () => {
-
-  const [showModal, setShowModal] = useState(false);
-
-  console.log("local: ", JSON.parse(`${localStorage.getItem('userDetails')}`))
+  
+  const navigate = useNavigate()
   const details = JSON.parse(`${localStorage.getItem('userDetails')}`);
 
+  
+
+  const [showModal, setShowModal] = useState(false);
+  const [ transactions, setTransactions ] = useState( [
+        {
+            _id: "",
+            status: "",
+            transactionType: "",
+            userId: "",
+            amount: 0,
+            createdAt: "",
+            updatedAt: "",
+        }
+      ]
+  );
+  //data.user.wallet_balance
+  
   const [ data, setData ] = useState(details);
-  const navigate = useNavigate()
-
-
-
-  
-  // useEffect(updateRecord, [])
-
-  const handleOpenModal = () => {
-        setShowModal(true)   
-    }
-  const handleCloseModal = () => {
-     setShowModal(false)   
-  }
-
-  const verifyPayment = async (ref:string) => {
-    const verify = await fetch(`http://localhost:3030/v1/users/paystack/callback?reference=${ref}`);
-    const result = await verify.json();
-    if(!result || result.message !== "Success"){
-      return false;
-    }
-    if(result.message === "Success"){
-      console.log("USER:::::",result.user)
-      const user = result.user;
-      setData({...details, user});
-      return true;
-    }
-    return false;
-  }
-
-  //make verify call
   const payment = localStorage.getItem("payment");
-  
+
   useEffect(() =>{
+    console.log("Details: ", details)
     if(payment){
 
       const check = async () => {
@@ -73,14 +59,77 @@ export const WalletPage = () => {
       }
       check()
     }
+    updateUser();
+    fetchTransactions()
   }, [payment]);
 
-  // console.log("special Result: ", result.reference)
-  // const status = verifyPayment(result.reference);
-  // if(!status){
-  //   alert('Payment verification failed');
-  //   return;
-  // }
+
+
+  console.log("local: ", JSON.parse(`${localStorage.getItem('userDetails')}`))
+  console.log("data: ", data);
+  console.log("data: ", data.token);
+
+
+  const userIdInStorage = JSON.parse(`${localStorage.getItem("userDetails")}`).user._id;
+  
+  const updateUser = async () => {
+    console.log("hello")
+    const userData = await fetch(`https://emove-teamc-new.onrender.com/v1/users/user/${userIdInStorage}`);
+    const result = await userData.json();
+    console.log("result.user: ", result.user)
+    if(result.user){
+      const det = JSON.parse(`${localStorage.getItem('userDetails')}`);
+      const user = {...det, user:{
+        ...det.user,
+        wallet_balance: result.user.wallet_balance
+      }};
+
+      console.log("UUSERS: ", user)
+      console.log("DDETAILS: ", det)
+      localStorage.setItem("userDetails", JSON.stringify(user));
+      const newDetails = JSON.parse(`${localStorage.getItem('userDetails')}`);
+      setData(newDetails);
+      console.log("BOOOP.user: ", JSON.stringify(newDetails))
+      console.log("new.ego: ", newDetails.user.wallet_balance)
+    }
+  }
+
+  
+
+  const fetchTransactions = async () => {
+    const transactions = await fetch(`https://emove-teamc-new.onrender.com/v1/users/transaction/${userIdInStorage}`);
+    const result = await transactions.json();
+    console.log("fetchTransactions: ",result);
+    setTransactions(result.transaction)
+
+  }
+  // useEffect(updateRecord, [])
+
+  const handleOpenModal = () => {
+        setShowModal(true)   
+    }
+  const handleCloseModal = () => {
+     setShowModal(false)   
+  }
+
+  const verifyPayment = async (ref:string) => {
+    const verify = await fetch(`https://emove-teamc-new.onrender.com/v1/users/paystack/callback?reference=${ref}`);
+    const result = await verify.json();
+    if(!result || result.message !== "Success"){
+      return false;
+    }
+    if(result.message === "Success"){
+      console.log("USER:::::",result.user)
+      const user = result.user;
+      setData({...details, user});
+      return true;
+    }
+    return false;
+  }
+
+  //make verify call
+  
+
 
   return (
       <>
@@ -100,7 +149,7 @@ export const WalletPage = () => {
                 rightContentWidth='65%'
                 additionalClasses='dashboard-journey-layout'
               leftContent={
-                  <div className='walletpage-balance-card'>
+                  <div className='walletpage-balance-card' style={{zIndex: `${showModal? "0":"1"}`}}>
                     <div className="walletpage-card-description">
                       <p className='walletpage-card-description-header'>Available Amount</p>
                       <p className='walletpage-card-description-content'>&#8358; {data.user.wallet_balance}</p>
@@ -124,7 +173,34 @@ export const WalletPage = () => {
               }
                 customRightContentClasses='walletpage-right-content'
                 rightContent={
-                  <div className='walletpage-transaction'>
+
+                    transactions[0]._id ? (
+                      <div style={{paddingTop: "1500px", width: "100%", zIndex: "0"}}><table>
+                        <thead>
+                          <tr>
+                            <th>Transaction Type</th>
+                            <th>Amount</th>
+                            <th>Reference</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {transactions.map((item:any, index:any) => (
+                            <tr key={index}>
+                              <td>{item.transactionType}</td>
+                              <td>{item.amount}</td>
+                              <td>{`Emove-${item._id}`}</td>
+                              <td>{item.createdAt}</td>
+                              <td>{item.status}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                      </div>
+                    )
+                    :
+                    <div className='walletpage-transaction'>
                     <div className="walletpage-transaction-subheaders">
                       <p>Activity</p>
                       <p>Clear all</p>
@@ -138,7 +214,8 @@ export const WalletPage = () => {
                       </div>
                     </div>
                   </div>
-                }
+                  }
+                
             />
           }
           header={<div className="walletpage-header">Wallet</div>}
